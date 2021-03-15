@@ -278,7 +278,7 @@ Will show off MacEps in Python vs. Julia, and then will demonstrate the
 bisection method in Julia.
 
 
-## Near Conclusion
+## Conclusion
 Throughout this, we hope you have found Julia to be a very user friendly language,
 one that is quite similar to other popular programming languages out there. If
 you are interested in the fields of data science, numerical analysis, or
@@ -289,14 +289,19 @@ development cycle. Julia is still a growing language, only having achieved it's
 first semi-public development releases in 2012, and it's "1.0" release in 2018.
 We hope you embrace the language, and contribute to it's continued growth!
 
+
 ## Resources and Other Helpful Links
 
 [Julia on
 Wikipedia](https://en.wikipedia.org/wiki/Julia_(programming_language))
+
 ["Why We Created
 Julia"](https://julialang.org/blog/2012/02/why-we-created-julia/)
+
 [Announcing the release of Julia
 1.0](https://julialang.org/blog/2018/08/one-point-zero/)
+
 [Arrays and Matrices in Julia](https://docs.julialang.org/en/v1/manual/arrays/)
+
 [Julia Types](https://docs.julialang.org/en/v1/manual/types/)
 
