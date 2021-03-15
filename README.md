@@ -3,8 +3,8 @@ Julia is a programming language created to "fix" the inefficiencies of Python.
 It is multi-paradigm in nature, much like Python is. Julia is a a high-level
 dynamic programming language, much like Python. Julia is a high-performance
 language, unlike Python. Julia really shines in the fields of data science,
-numerical analysis, and computational mathematics, but it has many other usages
-as well. 
+numerical analysis, machine learning, and computational mathematics. It has 
+many other usages as well. 
 
 Many people refer to Julia as the "niece" of Python, having fully embraced the
 `numpy` library that Python utilizes externally. Much of the functionality of
@@ -287,7 +287,7 @@ more and more popular in these fields. If you aren't necessarily involved in
 these fields, there are many other ways you can incorporate Julia into your
 development cycle. Julia is still a growing language, only having achieved it's
 first semi-public development releases in 2012, and it's "1.0" release in 2018.
-
+We hope you embrace the language, and contribute to it's continued growth!
 
 ## Resources and Other Helpful Links
 
@@ -297,5 +297,6 @@ Wikipedia](https://en.wikipedia.org/wiki/Julia_(programming_language))
 Julia"](https://julialang.org/blog/2012/02/why-we-created-julia/)
 [Announcing the release of Julia
 1.0](https://julialang.org/blog/2018/08/one-point-zero/)
-
+[Arrays and Matrices in Julia](https://docs.julialang.org/en/v1/manual/arrays/)
+[Julia Types](https://docs.julialang.org/en/v1/manual/types/)
 
