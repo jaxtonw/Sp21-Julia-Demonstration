@@ -17,7 +17,7 @@ Would you like to try out Julia without committing to a pesky download? [Visit
 here!](https://julialang.org/learning/tryjulia/) Have you been sold on Julia,
 and do you want to integrate Julia into your system? [Visit their download page
 here!](https://julialang.org/downloads/) Alternatively, there are Docker images
-available of Julia if that's how you roll.
+available of Julia if that's how your boat floats.
 
 
 ## Using Julia
