@@ -230,16 +230,46 @@ introduce you to in a basic introduction to Julia. We didn't even cover
 methods; what a bummer!
 
 
-## Arrays, Vectors, and Matrices
-Will show off matrices and the *handy* Matrix operations. I'll add some more notes on this later, we're doing this demonstration live!
+## Arrays, Vectors, and Matrices 
+Will show off matrices and the *handy* Matrix operations. I'll add some more 
+notes on this later, we're doing this demonstration live!
 
 ```
+# Declare a vector of "Any" type, mix and match data!
+julia> vec = ["a", 1]
+2-element Array{Any,1}:
+  "a"
+ 1
+
+julia> vec[0]
+ERROR: BoundsError: attempt to access 2-element Array{Any,1} at index [0]
+Stacktrace:
+ [1] getindex(::Array{Any,1}, ::Int64) at ./array.jl:809
+ [2] top-level scope at REPL[3]:1
+
+# Indexing starts at 1!
+julia> vec[1]
+"a"
+
+julia> vec[2]
+1
+
+# Define 2x2 matrix
 julia> [1 2; 3 4]
 2×2 Array{Int64,2}:
  1  2
  3  4
 
+# A * b
 julia> [1 2; 3 4] * [5, 5]
+2-element Array{Int64,1}:
+ 15
+ 35
+
+# Dot Product
+julia> [1 2] * [3, 4]
+1-element Array{Int64,1}:
+ 11
 
 julia> zeros(5)
 5-element Array{Float64,1}:
@@ -273,20 +303,28 @@ julia> ones(5, 5)
  1.0  1.0  1.0  1.0  1.0
  1.0  1.0  1.0  1.0  1.0
 
+
+# Set up Ax=b
 julia> A = [1 0; 0 1]
 2×2 Array{Int64,2}:
  1  0
  0  1
 
-
 julia> b = [1 1]
 1×2 Array{Int64,2}:
  1  1
 
+# Solve Ax = b
 julia> x = b/A
 1×2 Array{Float64,2}:
  1.0  1.0
 
+# Alternative way to solve Ax=b
+julia> b * inv(A)
+1×2 Array{Float64,2}:
+ 1.0  1.0
+
+# Let's try it with something that's not the identity matrix
 julia> A = [2 1; 1 2]
 2×2 Array{Int64,2}:
  2  1
@@ -297,26 +335,54 @@ julia> x = b/A
  0.333333  0.333333
 ```
 
-## Computational Mathematics Examples
-Due to my own previous experience in the field of computational mathematics, I've put together some short examples of Python and Julia code that relate to computational mathematics. Compare the two languages and their performance!
+## Computational Mathematics Examples 
+Due to my own previous experience in the field of computational mathematics,
+I've put together some short examples of Python and Julia code that relate to 
+computational mathematics. Compare the two languages and their performance!
 
 
-### Machine Epsilon
-The first is an example of a [machine epsilon](https://en.wikipedia.org/wiki/Machine_epsilon) calculation with 32 bit and 64 bit floating point values.
+### Machine Epsilon 
+The first is an example of a [machine 
+epsilon](https://en.wikipedia.org/wiki/Machine_epsilon) calculation with 32 bit
+and 64 bit floating point values.
 
-In Python, the `numpy` library was required to control the 32 bit floating point value in the `maceps32` routine. The 64 bit floating point value is Python's default on a 64-bit installation, thus the `numpy` library was not necessary for `maceps64`. See [`src/maceps.py`](src/maceps.py) to find the definitions of both machine epsilon routines in Python. Load this file in interactive mode with `$ python -i src/maceps.py`, and see the return values of the functions by calling `maceps32()` and `maceps64()` in the REPL.
+In Python, the `numpy` library was required to control the 32 bit floating
+point value in the `maceps32` routine. The 64 bit floating point value is
+Python's default on a 64-bit installation, thus the `numpy` library was not
+necessary for `maceps64`. See [`src/maceps.py`](src/maceps.py) to find the
+definitions of both machine epsilon routines in Python. Load this file in
+interactive mode with `$ python -i src/maceps.py`, and see the return values of
+the functions by calling `maceps32()` and `maceps64()` in the REPL.
 
-In Julia, the language gives you full control over types: no additional imports were necessary to create the 32 bit and 64 bit routines! See [`src/maceps.jl`](src/maceps.jl) to find the definitions of 4 machine epsilon routines in Julia. Load this file in interactive mode with `$ julia -i src/maceps.jl`, and see the return values of the *core* machine epsilon routines by calling `maceps32()` and `maceps64()` in the REPL. There's also two addition routines defined, `maceps32Print()` and `maceps64Print()` that can be used to view the machine epsilon computation as it is happening.
+In Julia, the language gives you full control over types: no additional imports
+were necessary to create the 32 bit and 64 bit routines! See
+[`src/maceps.jl`](src/maceps.jl) to find the definitions of 4 machine epsilon
+routines in Julia. Load this file in interactive mode with `$ julia -i
+src/maceps.jl`, and see the return values of the *core* machine epsilon
+routines by calling `maceps32()` and `maceps64()` in the REPL. There's also two
+addition routines defined, `maceps32Print()` and `maceps64Print()` that can be
+used to view the machine epsilon computation as it is happening.
 
 
-### Bisection Method
-The second example lined up is utilizing the [bisection method](https://en.wikipedia.org/wiki/Bisection_method) for root finding. Both of these routines have timers attached to them to view the performance differences between Python and Julia.
+### Bisection Method 
+The second example lined up is utilizing the [bisection
+method](https://en.wikipedia.org/wiki/Bisection_method) for root finding. Both
+of these routines have timers attached to them to view the performance
+differences between Python and Julia.
 
-In the following examples, we aim to find the x-value such that `xcosh(x) + x^3 - pi = 0`.
+In the following examples, we aim to find the x-value such that `xcosh(x) + x^3
+- pi = 0`.
 
-To see the Python code of the bisection method, go to [`src/bisection.py`](src/bisection.py). This can be run directly with `$ python src/bisection.py` to see the results of computing the bisection method with a lowerbound at `x=0`, and an upperbound at `x=2`.
+To see the Python code of the bisection method, go to
+[`src/bisection.py`](src/bisection.py). This can be run directly with `$ python
+src/bisection.py` to see the results of computing the bisection method with a
+lowerbound at `x=0`, and an upperbound at `x=2`.
 
-To see the Julia code of the bisection method, go to [`src/bisection.jl`](src/bisection.jl). This can be run through Julia's interactive mode with `$ julia -i src/bisection.jl`, and running the method `testBisection()` will execute the bisection method on the function noted above, with a lowerbound at `x=0` and an upperbound at `x=2`.  
+To see the Julia code of the bisection method, go to
+[`src/bisection.jl`](src/bisection.jl). This can be run through Julia's
+interactive mode with `$ julia -i src/bisection.jl`, and running the method
+`testBisection()` will execute the bisection method on the function noted
+above, with a lowerbound at `x=0` and an upperbound at `x=2`.  
 
 
 ## Conclusion
