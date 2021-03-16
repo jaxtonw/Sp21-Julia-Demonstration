@@ -3,26 +3,26 @@ Julia is a programming language created to "fix" the inefficiencies of Python.
 It is multi-paradigm in nature, much like Python is. Julia is a a high-level
 dynamic programming language, much like Python. Julia is a high-performance
 language, unlike Python. Julia really shines in the fields of data science,
-numerical analysis, machine learning, and computational mathematics. It has 
-many other usages as well. 
+numerical analysis, machine learning, and computational mathematics. It has
+many other usages as well.
 
 Many people refer to Julia as the "niece" of Python, having fully embraced the
 `numpy` library that Python utilizes externally. Much of the functionality of
 Python's `numpy` library is directly embedded in the Julia language, giving it
 significant advantages in the fields of data science, numerical analysis,
-and computational mathematics. 
+and computational mathematics.
 
 ## Try Julia
 Would you like to try out Julia without committing to a pesky download? [Visit
-here!](https://julialang.org/learning/tryjulia/) Have you been sold on Julia, 
+here!](https://julialang.org/learning/tryjulia/) Have you been sold on Julia,
 and do you want to integrate Julia into your system? [Visit their download page
 here!](https://julialang.org/downloads/) Alternatively, there are Docker images
-available of Julia if that's how you roll. 
+available of Julia if that's how you roll.
 
 
 ## Using Julia
 With a proper installation of Julia, one can execute `.jl` files with the
-`julia` command in a similar manner as to how one would exectue `.py` files 
+`julia` command in a similar manner as to how one would exectue `.py` files
 with the `python` command. If one has the file `test.jl` in their current
 directory, running `$ julia test.jl` will execute said file. However, there is
 *much* more to the `julia` command than just simply *executing* a file...
@@ -45,7 +45,7 @@ REPL should lead to a prompt that looks like:
  _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
 |__/                   |
 
-julia> 
+julia>
 ```
 
 As a reminder, the REPL stands for "Read, Evaluate, Print, Loop." The Julia
@@ -57,7 +57,7 @@ Earlier we learned about using the `julia [FILE]` to execute a single Julia
 file. What if we want to execute the file *but then keep interacting with what
 was loaded?* In comes Julia's "Interactive Mode!" Simply by adding a `-i` flag
 immediately after `julia`, one can load the contents of a file and then be
-placed right into the Julia REPL. 
+placed right into the Julia REPL.
 
 Suppose one has a file named `test.jl` that contains a function definition.
 Suppose that someone wants to *try* this function out with a few different
@@ -65,7 +65,7 @@ inputs, while not necessarily modifying the `test.jl` file to do so. Julia's
 "Interactive Mode" comes to the rescue! Running `julia -i test.jl`, one will
 load the entire contents of `test.jl` before being placed into the Julia REPL.
 At this point, one can execute `myFunc` with a few different inputs in an
-interactive and non-committal environment. Perfect for testing! 
+interactive and non-committal environment. Perfect for testing!
 
 We will use this interactive mode for a couple demonstrations later.
 
@@ -75,8 +75,9 @@ Julia has dynamic typing: it's types are checked at run-time. One can allow
 Julia to interpret types automatically (much like Python's duck typing), or one
 can directly declare the types associated with a variable through a semblance
 of strong typing. Both of the following are valid syntax for declaring the
-variable `x` and `y` in Julia (so long as it is in a function or struct, Julia has some
-weird rules about globals not being able to be statically typed, for now).
+variable `x` and `y` in Julia (so long as it is in a function or struct, Julia
+has some weird rules about globals not being able to be statically typed, for
+now).
 
 ```julia
 x = 1
@@ -85,7 +86,7 @@ y::Integer = 1
 
 The first of the two declarations declares a variable `x` that is the integer 1. This can be
 reassigned to another data type at a later time though. The second declaration
-declares a variable `y` that *must be* an Integer type. 
+declares a variable `y` that *must be* an Integer type.
 
 Please see [the function `testIntegerTypes()` in `src/types.jl`](src/types.jl).
 
@@ -98,7 +99,7 @@ function will then be succeeded by parenthesis, much like Python. One can
 define named parameters in the parenthesis: yet another similarity to Python.
 With yet another similarity to Python, default parameters can be defined.
 Similar to Python's "type hinting," one can also declare the types of the
-parameters in a Julia function. 
+parameters in a Julia function.
 
 ```julia
 function myFunc1()
@@ -189,7 +190,7 @@ non-defined data types, in the order they are defined. So, to create an
 ImmutableVehicle with `make="Toyota"`, `model="Tacoma"`, and `numWheels=4`, one
 can construct the object with `ImmutableVehicle("Toyota", "Tacoma", 4)`. More
 information regarding `struct` con`struct`ors can be found
-[here](https://docs.julialang.org/en/v1/manual/constructors/). 
+[here](https://docs.julialang.org/en/v1/manual/constructors/).
 
 In interactive mode, we can find the following key differences between a
 mutable struct and an immutable struct with the `MutableVehicle` and
@@ -230,7 +231,7 @@ methods; what a bummer!
 
 
 ## Arrays, Vectors, and Matrices
-Will show off matrices and the *handy* Matrix operations.
+Will show off matrices and the *handy* Matrix operations. I'll add some more notes on this later, we're doing this demonstration live!
 
 ```
 julia> [1 2; 3 4]
@@ -271,11 +272,51 @@ julia> ones(5, 5)
  1.0  1.0  1.0  1.0  1.0
  1.0  1.0  1.0  1.0  1.0
  1.0  1.0  1.0  1.0  1.0
+
+julia> A = [1 0; 0 1]
+2×2 Array{Int64,2}:
+ 1  0
+ 0  1
+
+
+julia> b = [1 1]
+1×2 Array{Int64,2}:
+ 1  1
+
+julia> x = b/A
+1×2 Array{Float64,2}:
+ 1.0  1.0
+
+julia> A = [2 1; 1 2]
+2×2 Array{Int64,2}:
+ 2  1
+ 1  2
+
+julia> x = b/A
+1×2 Array{Float64,2}:
+ 0.333333  0.333333
 ```
 
 ## Computational Mathematics Examples
-Will show off MacEps in Python vs. Julia, and then will demonstrate the
-bisection method in Julia.
+Due to my own previous experience in the field of computational mathematics, I've put together some short examples of Python and Julia code that relate to computational mathematics. Compare the two languages and their performance!
+
+
+### Machine Epsilon
+The first is an example of a [machine epsilon](https://en.wikipedia.org/wiki/Machine_epsilon) calculation with 32 bit and 64 bit floating point values.
+
+In Python, the `numpy` library was required to control the 32 bit floating point value in the `maceps32` routine. The 64 bit floating point value is Python's default on a 64-bit installation, thus the `numpy` library was not necessary for `maceps64`. See [`src/maceps.py`](src/maceps.py) to find the definitions of both machine epsilon routines in Python. Load this file in interactive mode with `$ python -i src/maceps.py`, and see the return values of the functions by calling `maceps32()` and `maceps64()` in the REPL.
+
+In Julia, the language gives you full control over types: no additional imports were necessary to create the 32 bit and 64 bit routines! See [`src/maceps.jl`](src/maceps.jl) to find the definitions of 4 machine epsilon routines in Julia. Load this file in interactive mode with `$ julia -i src/maceps.jl`, and see the return values of the *core* machine epsilon routines by calling `maceps32()` and `maceps64()` in the REPL. There's also two addition routines defined, `maceps32Print()` and `maceps64Print()` that can be used to view the machine epsilon computation as it is happening.
+
+
+### Bisection Method
+The second example lined up is utilizing the [bisection method](https://en.wikipedia.org/wiki/Bisection_method) for root finding. Both of these routines have timers attached to them to view the performance differences between Python and Julia.
+
+In the following examples, we aim to find the x-value such that `xcosh(x) + x^3 - pi = 0`.
+
+To see the Python code of the bisection method, go to [`src/bisection.py`](src/bisection.py). This can be run directly with `$ python src/bisection.py` to see the results of computing the bisection method with a lowerbound at `x=0`, and an upperbound at `x=2`.
+
+To see the Julia code of the bisection method, go to [`src/bisection.jl`](src/bisection.jl). This can be run through Julia's interactive mode with `$ julia -i src/bisection.jl`, and running the method `testBisection()` will execute the bisection method on the function noted above, with a lowerbound at `x=0` and an upperbound at `x=2`.  
 
 
 ## Conclusion
@@ -305,3 +346,4 @@ Julia"](https://julialang.org/blog/2012/02/why-we-created-julia/)
 
 [Julia Types](https://docs.julialang.org/en/v1/manual/types/)
 
+[Julia Functions](https://docs.julialang.org/en/v1/manual/functions/)
